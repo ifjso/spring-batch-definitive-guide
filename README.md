@@ -1,2 +1,2 @@
-# 스프링배치 완벽가이드
+# Spring Batch Definitive Guide
 
