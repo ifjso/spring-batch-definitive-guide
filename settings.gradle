@@ -1,3 +1,4 @@
 rootProject.name = 'spring-batch-definitive-guide'
 
-include 'hello-world'
+include 'chapter02'
+include 'chapter04'
