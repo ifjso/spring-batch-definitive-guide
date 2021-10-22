@@ -1,6 +1,6 @@
 package io.spring.batch.chapter04.jobs;
 
-import io.spring.batch.chapter04.batch.RandomChunkSizePolicy;
+import io.spring.batch.chapter04.batch.LoggingStepStartStopListener;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -27,44 +27,45 @@ public class ChunkJob {
         this.stepBuilderFactory = stepBuilderFactory;
     }
 
-    @Bean
-    public Job chunkBasedJob() {
-        return this.jobBuilderFactory.get("chunkBasedJob")
-                .start(chunkStep())
-                .build();
-    }
+//    @Bean
+//    public Job chunkBasedJob() {
+//        return this.jobBuilderFactory.get("chunkBasedJob")
+//                .start(chunkStep())
+//                .build();
+//    }
+//
+//    @Bean
+//    public Step chunkStep() {
+//        return this.stepBuilderFactory.get("chunkStep")
+//                .<String, String>chunk(1000)
+//                .reader(itemReader())
+//                .writer(itemWriter())
+//                .listener(new LoggingStepStartStopListener())
+//                .build();
+//    }
 
-    @Bean
-    public Step chunkStep() {
-        return this.stepBuilderFactory.get("chunkStep")
-                .<String, String>chunk(randomChunkSizePolicy())
-                .reader(itemReader())
-                .writer(itemWriter())
-                .build();
-    }
+//    @Bean
+//    public RandomChunkSizePolicy randomChunkSizePolicy() {
+//        return new RandomChunkSizePolicy();
+//    }
 
-    @Bean
-    public RandomChunkSizePolicy randomChunkSizePolicy() {
-        return new RandomChunkSizePolicy();
-    }
-
-    @Bean
-    public ListItemReader<String> itemReader() {
-        List<String> items = new ArrayList<>(100000);
-
-        for (int i = 0; i < 100000; i++) {
-            items.add(UUID.randomUUID().toString());
-        }
-
-        return new ListItemReader<>(items);
-    }
-
-    @Bean
-    public ItemWriter<String> itemWriter() {
-        return items -> {
-            for (String item : items) {
-                System.out.println(">> current item = " + item);
-            }
-        };
-    }
+//    @Bean
+//    public ListItemReader<String> itemReader() {
+//        List<String> items = new ArrayList<>(100000);
+//
+//        for (int i = 0; i < 100000; i++) {
+//            items.add(UUID.randomUUID().toString());
+//        }
+//
+//        return new ListItemReader<>(items);
+//    }
+//
+//    @Bean
+//    public ItemWriter<String> itemWriter() {
+//        return items -> {
+//            for (String item : items) {
+//                System.out.println(">> current item = " + item);
+//            }
+//        };
+//    }
 }
