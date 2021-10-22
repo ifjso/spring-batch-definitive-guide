@@ -21,22 +21,22 @@ public class ExecutionContextJob {
         this.stepBuilderFactory = stepBuilderFactory;
     }
 
-    @Bean
-    public Job job() {
-        return this.jobBuilderFactory.get("job")
-                .start(step1())
-                .build();
-    }
-
-    @Bean
-    public Step step1() {
-        return this.stepBuilderFactory.get("step1")
-                .tasklet(helloWorldTasklet())
-                .build();
-    }
-
-    @Bean
-    public HelloWorldTasklet helloWorldTasklet() {
-        return new HelloWorldTasklet();
-    }
+//    @Bean
+//    public Job job() {
+//        return this.jobBuilderFactory.get("job")
+//                .start(step1())
+//                .build();
+//    }
+//
+//    @Bean
+//    public Step step1() {
+//        return this.stepBuilderFactory.get("step1")
+//                .tasklet(helloWorldTasklet())
+//                .build();
+//    }
+//
+//    @Bean
+//    public HelloWorldTasklet helloWorldTasklet() {
+//        return new HelloWorldTasklet();
+//    }
 }
