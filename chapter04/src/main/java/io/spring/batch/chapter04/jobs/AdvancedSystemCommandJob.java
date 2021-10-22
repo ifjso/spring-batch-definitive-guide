@@ -23,37 +23,37 @@ public class AdvancedSystemCommandJob {
         this.stepBuilderFactory = stepBuilderFactory;
     }
 
-    @Bean
-    public Job job() {
-        return this.jobBuilderFactory.get("systemCommandJob")
-                .start(systemCommandStep())
-                .build();
-    }
-
-    @Bean
-    public Step systemCommandStep() {
-        return this.stepBuilderFactory.get("systemCommandStep")
-                .tasklet(systemCommandTasklet())
-                .build();
-    }
-
-    @Bean
-    public SystemCommandTasklet systemCommandTasklet() {
-        SystemCommandTasklet tasklet = new SystemCommandTasklet();
-        tasklet.setCommand("touch tmp.txt");
-        tasklet.setTimeout(5000L);
-        tasklet.setInterruptOnCancel(true);
-
-        tasklet.setWorkingDirectory("/Users/ifjso");
-        tasklet.setSystemProcessExitCodeMapper(touchCodeMapper());
-        tasklet.setTerminationCheckInterval(5000L);
-        tasklet.setTaskExecutor(new SimpleAsyncTaskExecutor());
-        tasklet.setEnvironmentParams(new String[] {"JAVA_HOME=/java", "BATCH_HOME=/Users/batch"});
-        return tasklet;
-    }
-
-    @Bean
-    public SimpleSystemProcessExitCodeMapper touchCodeMapper() {
-        return new SimpleSystemProcessExitCodeMapper();
-    }
+//    @Bean
+//    public Job job() {
+//        return this.jobBuilderFactory.get("systemCommandJob")
+//                .start(systemCommandStep())
+//                .build();
+//    }
+//
+//    @Bean
+//    public Step systemCommandStep() {
+//        return this.stepBuilderFactory.get("systemCommandStep")
+//                .tasklet(systemCommandTasklet())
+//                .build();
+//    }
+//
+//    @Bean
+//    public SystemCommandTasklet systemCommandTasklet() {
+//        SystemCommandTasklet tasklet = new SystemCommandTasklet();
+//        tasklet.setCommand("touch tmp.txt");
+//        tasklet.setTimeout(5000L);
+//        tasklet.setInterruptOnCancel(true);
+//
+//        tasklet.setWorkingDirectory("/Users/ifjso");
+//        tasklet.setSystemProcessExitCodeMapper(touchCodeMapper());
+//        tasklet.setTerminationCheckInterval(5000L);
+//        tasklet.setTaskExecutor(new SimpleAsyncTaskExecutor());
+//        tasklet.setEnvironmentParams(new String[] {"JAVA_HOME=/java", "BATCH_HOME=/Users/batch"});
+//        return tasklet;
+//    }
+//
+//    @Bean
+//    public SimpleSystemProcessExitCodeMapper touchCodeMapper() {
+//        return new SimpleSystemProcessExitCodeMapper();
+//    }
 }
